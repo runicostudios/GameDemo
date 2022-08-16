@@ -1,0 +1,48 @@
+.navbar-container {
+    height: 80px;
+    width: 100%;
+    background-color: #181818;
+    display: flex;
+    justify-content: center;
+}
+
+.navbar-content {
+    width: 100%;
+    max-width: 960px;
+    display: flex;
+    display: flex;
+    justify-content: space-between;
+    gap: 10%;
+    align-items: center;
+}
+
+.navbar-element {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    width: 100px;
+}
+
+.navbar-element:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+#navbar-title {
+    display: flex;
+    align-items: center;
+    width: 500px;
+}
+
+#navbar-title:hover {
+    transform: scale(1);
+}
+
+#rf-logo-wrap {
+    height: 90%;
+}
+
+#rf-discord-logo-wrap {
+    height: 70%;
+}
+
