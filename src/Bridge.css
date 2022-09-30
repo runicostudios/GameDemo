@@ -1,0 +1,51 @@
+.connector-container {
+    width: 100%;
+    max-width: 960px;
+    padding: 25px 0;
+    box-shadow: inset 0px 0px 14px 7px #000000;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    border-radius: 10px;
+    align-items: center;
+}
+
+.wallet-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#refresh-btn {
+    width: 400px;
+    border-radius: 10px;
+    border: solid 2px #0e0e0e;
+}
+
+.connected-wallet {
+    border: solid 1px #0e0e0e;
+    background-color: #b8b8b8;
+    padding: 10px 20px;
+    border-radius: 12px;
+    display: flex;
+    gap: 10px;
+}
+
+.connected-wallet > span {
+    color: #0e0e0e;
+}
+
+.reconnect-btn {
+    margin-left: 10%;
+    background-color: #a80606;
+    color: #eeeeee
+}
+
+.reconnect-btn:hover {
+    background-color: #0e0e0e;
+    color: #a80606;
+    box-shadow: 0px 5px 20px rgba(160, 0, 0, 0.4);
+    transform: translateY(0px);
+    scale: 0.95;
+}

@@ -7,6 +7,8 @@ import { toHex, hexDecode, unpackAssets } from './util';
 
 import NavBar from './components/NavBar';
 import HowTo from './components/HowTo';
+import WalletConnector from './components/WalletConnector';
+import Bridge from './Bridge';
 
 const unityContext = new UnityContext({
   loaderUrl: "./WebGL.loader.js",
@@ -24,6 +26,7 @@ export function connectWallet() {
   
     // Find all assets
     const assetsRaw = unpackAssets(value)
+    console.log("assets raw " + assetsRaw)
     const assetsWithMetadata = []
   
     for (let i = 0; i < assetsRaw.length; i++) {
@@ -41,7 +44,6 @@ export function connectWallet() {
       })
     }
     setAssets(JSON.stringify(assetsWithMetadata));
-    console.log(JSON.stringify(assetsWithMetadata));
   })
 }
 
@@ -51,6 +53,7 @@ export function setCoinValue(coinVal) {
   unityContext.send('Bridge', 'SetCoinValue', coinVal);
 }
 export function setAssets(assetMetadata) {
+  console.log('Setting assets: ', assetMetadata);
   unityContext.send('Bridge', 'SetAssetsValue', assetMetadata);
 }
 
@@ -64,6 +67,7 @@ function App() {
     <div className="appContent">
       <NavBar/>
       <HowTo/>
+      <Bridge />
       
         <div id="unity-container" class="unity-desktop">
           <Unity unityContext={unityContext} style={{

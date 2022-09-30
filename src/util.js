@@ -51,6 +51,7 @@ export function unpackAssets(value) {
                 }
             }
         }
+        // console.log(newNativeAssets)
         return newNativeAssets
     }
     return []

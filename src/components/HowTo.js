@@ -11,22 +11,22 @@ function HowTo() {
         <div className="howto-content">
             <span>
                 <br/>
-                This demo requires the Nami Wallet browser extension to play.
+                Firstly, ensure you have at least one cardano wallet extension installed.
                 <br/>
                 <br/>
-                To begin playing, click the connect button below (make sure you have pop-ups enabled).
+                To begin playing, choose your prefered wallet below (make sure you have pop-ups enabled).
                 <br/>
                 <br/>
                 Click Accept and your wallet will be successfully connected to the game!
+                <br/>
+                <br/>
+                If you experience any connection issues, try reconnecting the wallet.
                 <br/>
                 <br/>
                 Please report any bugs or feedback to our discord. Enjoy the Demo!
                 <br/>
                 <br/>
             </span>
-        </div>
-        <div className="ConnectContainer">
-            <button onClick={connectWallet}>Connect</button>
         </div>
     </div>
   )
