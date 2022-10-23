@@ -4,11 +4,18 @@
     padding: 25px 0;
     box-shadow: inset 0px 0px 14px 7px #000000;
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     justify-content: center;
     gap: 20px;
     border-radius: 10px;
     align-items: center;
+}
+
+.wallet-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
 }
 
 .wallet-label {
