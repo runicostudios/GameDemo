@@ -1,13 +1,10 @@
 import './App.css';
 import React from "react";
 import Unity, { UnityContext } from "react-unity-webgl";
-import { enable, getBalance } from './walletConnector';
-import { blockfrostRequest } from './API';
-import { toHex, hexDecode, unpackAssets } from './util';
 
 import NavBar from './components/NavBar';
 import HowTo from './components/HowTo';
-import WalletConnector from './components/WalletConnector';
+// import WalletConnector from './components/WalletConnector';
 import Bridge from './Bridge';
 
 const unityContext = new UnityContext({
@@ -17,41 +14,14 @@ const unityContext = new UnityContext({
   codeUrl: "./WebGL.wasm",
 });
 
-export function connectWallet() {
-  enable().then(async (response) => {
-    console.log('Connection response: ', response);
-    const value = await getBalance();
-    // Set Lovelace amount
-    setCoinValue(value.coin().to_str());
-  
-    // Find all assets
-    const assetsRaw = unpackAssets(value)
-    console.log("assets raw " + assetsRaw)
-    const assetsWithMetadata = []
-  
-    for (let i = 0; i < assetsRaw.length; i++) {
-      const asset = assetsRaw[i]
-      //Blockfrost api uses the policyid + assetname as key to lookup an asset (hex encoded)
-      const unit = toHex(asset.hash.to_bytes()) + toHex(asset.assetName.name())
-      let metadata = await blockfrostRequest(`/assets/${unit}`);
-      // console.log('Metadata: ', metadata);
-      assetsWithMetadata.push({
-        asset: {
-          assetName: hexDecode(asset.assetName.name())
-          , amount: asset.amount.to_str()
-        },
-        metadata: metadata
-      })
-    }
-    setAssets(JSON.stringify(assetsWithMetadata));
-  })
-}
 
 
 export function setCoinValue(coinVal) {
   console.log('Setting coin value: ', coinVal);
   unityContext.send('Bridge', 'SetCoinValue', coinVal);
 }
+
+
 export function setAssets(assetMetadata) {
   console.log('Setting assets: ', assetMetadata);
   unityContext.send('Bridge', 'SetAssetsValue', assetMetadata);

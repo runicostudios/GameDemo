@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@emurgo/cardano-serialization-lib-asmjs": "^9.1.4",
+    "@emurgo/cardano-serialization-lib-asmjs": "^10.0.4-beta.4",
     "@emurgo/cardano-serialization-lib-nodejs": "^11.0.5",
     "@harmonicpool/cardano-wallet-interface": "github:HarmonicPool/cardano-wallet-interface",
     "@testing-library/jest-dom": "^5.16.1",

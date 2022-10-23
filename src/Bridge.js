@@ -202,6 +202,7 @@ function Bridge() {
                             const assetName = assetNames.get(j);
                             const assetNameString = Buffer.from(assetName.name(),"utf8").toString();
                             const assetNameHex = Buffer.from(assetName.name(),"utf8").toString("hex")
+                            console.log(policyIdHex + ", " + assetNameString)
                             const multiassetAmt = multiasset.get_asset(policyId, assetName)
                             multiAssetStr += `+ ${multiassetAmt.to_str()} + ${policyIdHex}.${assetNameHex} (${assetNameString})`
                             if (multiassetAmt) {
@@ -283,20 +284,31 @@ function Bridge() {
 
             for (let i = 0; i < assetsRaw.length; i++) {
                 const asset = assetsRaw[i]
-                
-                if ((toHex(asset.hash.to_bytes())) == "5d6aa5c975266893fc446f24a094dddc59192638b5da0ec0691ec0ae") {
-                    //Blockfrost api uses the policyid + assetname as key to lookup an asset (hex encoded)
-                    const unit = toHex(asset.hash.to_bytes()) + toHex(asset.assetName.name())
-                    let metadata = await blockfrostRequest(`/assets/${unit}`);
-                    // console.log('Metadata: ', metadata);
-                    assetsWithMetadata.push({
-                        asset: {
-                            assetName: hexDecode(asset.assetName.name())
-                            , amount: asset.amount.to_str()
-                        },
-                        metadata: metadata
-                    })
-                }
+
+                const unit = toHex(asset.hash.to_bytes()) + toHex(asset.assetName.name())
+                let metadata = await blockfrostRequest(`/assets/${unit}`);
+                // console.log('Metadata: ', metadata);
+                assetsWithMetadata.push({
+                    asset: {
+                        assetName: hexDecode(asset.assetName.name())
+                        , amount: asset.amount.to_str()
+                    },
+                    metadata: metadata
+                })
+        
+                // if ((toHex(asset.hash.to_bytes())) == "5d6aa5c975266893fc446f24a094dddc59192638b5da0ec0691ec0ae") {
+                //         //Blockfrost api uses the policyid + assetname as key to lookup an asset (hex encoded)
+                //     const unit = toHex(asset.hash.to_bytes()) + toHex(asset.assetName.name())
+                //     let metadata = await blockfrostRequest(`/assets/${unit}`);
+                //     // console.log('Metadata: ', metadata);
+                //     assetsWithMetadata.push({
+                //         asset: {
+                //             assetName: hexDecode(asset.assetName.name())
+                //             , amount: asset.amount.to_str()
+                //         },
+                //         metadata: metadata
+                //     })
+                // }         
             }
 
             setAssets(JSON.stringify(assetsWithMetadata));
